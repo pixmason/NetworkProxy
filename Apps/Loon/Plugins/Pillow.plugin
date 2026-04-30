@@ -1,0 +1,13 @@
+#!name=Pillow-会员解锁
+#!desc=解锁 Pillow Premium 订阅会员（支持版本: ≤ 6.3）
+#!author=PixMason🅥[https://github.com/PixMason]
+#!icon=https://is1-ssl.mzstatic.com/image/thumb/PurpleSource211/v4/ab/e9/8d/abe98d3a-4ce4-4b94-2f64-1b45f248fdba/Placeholder.mill/96x96bb-75.webp
+#!tag=去广告,订阅会员
+#!date=2026-04-30
+
+
+[Script]
+http-response ^https?:\/\/api\.rc-backup\.com\/v1\/(receipts|subscribers\/[^?\s/]+)$ script-path=https://raw.githubusercontent.com/pixmason/NetworkProxy/main/Script/Pillow.js, requires-body=true, timeout=15, tag=Pillow-会员解锁, enable=true
+
+[mitm]
+hostname = api.rc-backup.com

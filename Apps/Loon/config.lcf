@@ -1,0 +1,117 @@
+# ================================
+# Loon 自定义配置（大陆优化版）
+# Date: 2026-04-29
+# Author: Pixmason
+# ================================
+
+[General]
+# IPv4 模式
+ip-mode = v4-only
+
+# 跳过代理
+skip-proxy = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, localhost, *.local, *.crashlytics.com
+
+# TUN 绕过地址
+bypass-tun = 10.0.0.0/8, 100.64.0.0/10, 127.0.0.0/8, 169.254.0.0/16, 172.16.0.0/12, 192.0.0.0/24, 192.0.2.0/24, 192.88.99.0/24, 192.168.0.0/16, 198.51.100.0/24, 203.0.113.0/24, 224.0.0.0/4, 255.255.255.255/32
+
+# DNS配置
+dns-server = system, 119.29.29.29, 114.114.114.114, 223.5.5.5
+
+# WiFi 共享关闭
+allow-wifi-access = false
+wifi-access-http-port = 7222
+wifi-access-socks5-port = 7221
+
+# 节点测速
+proxy-test-url = http://www.gstatic.com/generate_204
+test-timeout = 3
+
+# 资源解析器
+resource-parser = https://github.com/sub-store-org/Sub-Store/releases/latest/download/sub-store-parser.loon.min.js
+
+# 自动接口
+interface-mode = auto
+
+
+[Proxy]
+
+[Remote Proxy]
+#订阅链接
+
+
+[Proxy Chain]
+
+
+[Proxy Group]
+# ================= 策略组 =================
+人工智能 = select, 香港地区, 狮城地区, 马来西亚, 全部节点, img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Bot.png
+社交媒体 = select, 香港地区, 狮城地区, 马来西亚, 全部节点, img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/ForeignMedia.png
+常用服务 = select, 香港地区, 狮城地区, 马来西亚, 全部节点, img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Auto.png
+全球服务 = select, 香港地区, 狮城地区, 马来西亚, 全部节点, DIRECT, REJECT, img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Airport.png
+本地模式 = select, DIRECT, REJECT, img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/China.png
+广告模式 = select, REJECT, DIRECT, img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Advertising.png
+
+# ================= 节点策略 =================
+香港地区 = url-test, HK_Filter, interval = 600, img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Hong_Kong.png
+狮城地区 = url-test, SG_Filter, interval = 600, img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Singapore.png
+马来西亚 = url-test, ML_Filter, interval = 600, img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Malaysia.png
+全部节点 = url-test, ALL_Filter, interval = 600, img-url = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Global.png
+
+
+[Remote Filter]
+# 节点筛选
+ALL_Filter = NameRegex, FilterKey = "^(?!.*(会员|更新|流量|余额|重置|剩余|套餐)).*"
+HK_Filter = NameRegex, FilterKey = "^(?!.*(会员|更新|流量|余额|重置|剩余|套餐)).*(?i)(🇭🇰|港|香港|hk|hong kong)"
+SG_Filter = NameRegex, FilterKey = "^(?!.*(会员|更新|流量|余额|重置|剩余|套餐)).*(?i)(🇸🇬|新加坡|sg|singapore|狮城|獅城)"
+ML_Filter = NameRegex, FilterKey = "^(?!.*(会员|更新|流量|余额|重置|剩余|套餐)).*(?i)(🇲🇾|马来|馬來|马来西亚|馬來西亞|malaysia)"
+
+[Rule]
+# 局域网直连
+IP-CIDR, 192.168.0.0/16, DIRECT
+IP-CIDR, 10.0.0.0/8, DIRECT
+IP-CIDR, 127.0.0.0/8, DIRECT
+
+# 兜底
+FINAL, 全球服务
+
+[Remote Rule]
+# 广告过滤
+https://gcore.jsdelivr.net/gh/TG-Twilight/AWAvenue-Ads-Rule@main/Filters/AWAvenue-Ads-Rule-Surge-RULE-SET.list, policy=广告模式, tag=Ads, enabled=true
+
+# 国内直连
+https://gcore.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/China/China.list, policy=本地模式, tag=China, enabled=true
+https://gcore.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Tencent/Tencent.list, policy=本地模式, tag=Tencent, enabled=true
+https://gcore.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/JingDong/JingDong.list, policy=本地模式, tag=JD, enabled=true
+https://gcore.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Alibaba/Alibaba.list, policy=本地模式, tag=Alibaba, enabled=true
+
+# 人工智能
+https://gcore.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Claude/Claude.list, policy=人工智能, tag=Claude, enabled=true
+https://gcore.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/OpenAI/OpenAI.list, policy=人工智能, tag=OpenAI, enabled=true
+https://gcore.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Copilot/Copilot.list, policy=人工智能, tag=Copilot, enabled=true
+https://gcore.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Gemini/Gemini.list, policy=人工智能, tag=Gemini, enabled=true
+
+# 社交媒体
+https://gcore.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Twitter/Twitter.list, policy=社交媒体, tag=Twitter, enabled=true
+https://gcore.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Telegram/Telegram.list, policy=社交媒体, tag=Telegram, enabled=true
+https://gcore.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/YouTube/YouTube.list, policy=社交媒体, tag=YouTube, enabled=true
+https://gcore.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/YouTubeMusic/YouTubeMusic.list, policy=社交媒体, tag=YouTubeMusic, enabled=true
+
+# 常用服务
+https://gcore.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Bing/Bing.list, policy=常用服务, tag=Bing, enabled=true
+https://gcore.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Microsoft/Microsoft.list, policy=常用服务, tag=Microsoft, enabled=true
+https://gcore.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Google/Google.list, policy=常用服务, tag=Google, enabled=true
+https://gcore.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/GitHub/GitHub.list, policy=常用服务, tag=GitHub, enabled=true
+https://gcore.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Spotify/Spotify.list, policy=常用服务, tag=Spotify, enabled=true
+https://gcore.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Steam/Steam.list, policy=常用服务, tag=Steam, enabled=true
+https://gcore.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/Epic/Epic.list, policy=常用服务, tag=Epic, enabled=true
+https://gcore.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Loon/GitLab/GitLab.list, policy=常用服务, tag=GitLab, enabled=true
+
+
+[Rewrite]
+
+[Script]
+
+[MITM]
+ca-p12 =
+ca-passphrase =
+skip-server-cert-verify = false

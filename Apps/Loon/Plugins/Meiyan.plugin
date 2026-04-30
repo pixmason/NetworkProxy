@@ -1,0 +1,14 @@
+#!name=美颜相机-会员解锁
+#!desc=解锁美颜相机紫钻会员（支持版本: ≤ 11.4.00）
+#!author=PixMason🅥[https://github.com/PixMason]
+#!icon=https://raw.githubusercontent.com/luestr/IconResource/refs/heads/main/App_icon/120px/MeituMYXJ.png
+#!tag=去广告,订阅会员
+#!date=2026-04-30
+
+[Script]
+http-response ^https?://api\.account\.meitu\.com/(common/check_device_login_pwd|users/show_current\.json) script-path=https://raw.githubusercontent.com/pixmason/NetworkProxy/main/Script/Meiyan.js, requires-body=true, timeout=15, tag=美颜相机-会员解锁
+
+http-response ^https?://api\.meiyan\.com/vip/(user_center\.json|user_info\.json) script-path=https://raw.githubusercontent.com/pixmason/NetworkProxy/main/Script/Meiyan.js, requires-body=true, timeout=15, tag=美颜相机-会员解锁
+
+[mitm]
+hostname = api.account.meitu.com, api.meiyan.com

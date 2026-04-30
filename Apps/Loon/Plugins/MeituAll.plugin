@@ -1,0 +1,12 @@
+#!name=美图秀秀|美颜相机-会员解锁
+#!desc=解锁美图秀秀粉钻和美颜相机紫钻会员（支持版本: 美颜相机 ≤ 11.4.00 | 美图秀秀 ≤ 12.9.0）
+#!author=PixMason🅥[https://github.com/PixMason]
+#!icon=https://raw.githubusercontent.com/deezertidal/private/main/icons/meituxx.png
+#!tag=去广告,订阅会员
+#!date=2026-04-30
+
+[Script]
+http-response ^https?://(api\.meiyan\.com/(vip/user_info|vip/user_center|user/show)|api\.xiuxiu\.meitu\.com/v\d/(user/show|vip/(vip_show|prompt/query))) script-path=https://raw.githubusercontent.com/pixmason/NetworkProxy/main/Script/MeituAll.js, requires-body=true, timeout=15, tag=美图秀秀|美颜相机-会员解锁, enable=true
+
+[mitm]
+hostname = api.meiyan.com, api.xiuxiu.meitu.com

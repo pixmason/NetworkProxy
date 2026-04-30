@@ -1,0 +1,17 @@
+#!name=Foodie-会员解锁
+#!desc=解锁订阅会员,移除开屏广告和弹窗广告（支持版本: ≤ 7.4.40）
+#!author=PixMason🅥[https://github.com/PixMason]
+#!icon=https://raw.githubusercontent.com/luestr/IconResource/main/App_icon/120px/Foodie.png
+#!tag=去广告,订阅会员
+#!date=2026-04-30
+
+[Rule]
+DOMAIN, api-ad.kajicam.com, REJECT
+DOMAIN, zjres-ad.kajicam.com, REJECT
+DOMAIN, popup-api.b612kaji.com, REJECT
+
+[Script]
+http-response ^https?:\/\/purchase-foodiecn-api\.yiruikecorp\.com(:\d+)?\/v1\/purchase\/subscription\/subscriber\/status$ script-path=https://raw.githubusercontent.com/pixmason/NetworkProxy/main/Script/Foodie.js, requires-body=true, timeout=15, tag=Foodie-会员解锁, enable=true
+
+[mitm]
+hostname = purchase-foodiecn-api.yiruikecorp.com
